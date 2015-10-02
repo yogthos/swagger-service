@@ -13,7 +13,7 @@
    (s/optional-key :pass) String})
 
 (defn service-endpoint [config]
-  (defapi app
+  (api
     (ring.swagger.ui/swagger-ui
      "/swagger-ui")
     (swagger-docs

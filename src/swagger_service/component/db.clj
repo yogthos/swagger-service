@@ -14,18 +14,14 @@
    (when-let [db-user (-> user (get-user db) first)]
      (password/check (:pass user) (:pass db-user)))))
 
-(defrecord DbComponent []
+(defrecord DbComponent [connection]
   component/Lifecycle
   (start [component]
-         (assoc component :connection
-           {:classname      "org.sqlite.JDBC"
-             :connection-uri (:connection-uri env)
-             :naming         {:keys   clojure.string/lower-case
-                              :fields clojure.string/upper-case}}))
+         (assoc component :connection connection))
   (stop [component]
         (dissoc component :connection)))
 
-(defn db-component []
-  (->DbComponent))
+(defn db-component [connection]
+  (->DbComponent connection))
 
 

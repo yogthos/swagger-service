@@ -19,7 +19,7 @@
 (defn new-system [config]
   (let [config (meta-merge base-config config)]
     (-> (component/system-map
-         :db      (db-component)
+         :db      (db-component (:db config))
          :app     (handler-component (:app config))
          :http    (jetty-server (:http config))
          :example (endpoint-component example-endpoint)
