@@ -6,7 +6,7 @@ VALUES (:id, :first_name, :last_name, :email, :pass)
 
 -- name: get-user
 -- retrieve a user given the id.
-SELECT * FROM users
+SELECT id, first_name, last_name, email FROM users
 WHERE id = :id
 
 -- name: get-users
